@@ -1,4 +1,4 @@
-function [mfcc] = computemfcc(audioData, fs)
+function [mfcc2] = computemfcc(audioData, fs)
 
 % implemented based on dsp.stackexchange.com/questions/6499 
 
@@ -35,7 +35,7 @@ frameData = fft(frameData', windowLength);
 %plot(f,abs(frameData(1:windowLength/2+1,10)));
 
 function m = freqTomel(f)
-    m = 2595 * log10(1+f/700);
+    m = 2595 * log(1+f/700);
 end
 
 % Number of mel frequencies
@@ -60,12 +60,11 @@ for k=1:size(frameData,2)
                     melFreqFrame<=((i+1)*melBinWidth+minF));
        melFilter(i,iMelFilter) = triang(numel(iMelFilter));
    end
-   
-   mels = log10(melFilter * frame);
+   mels = log((melFilter * frame));
    melsData(:,k) = mels;
 end
 
 % Not implemented yet, for now this is just mels data, no DCT
-mfcc = melsData;
+mfcc2 = dct(melsData);
 
 end
