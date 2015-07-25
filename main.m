@@ -1,7 +1,7 @@
 Tw = 25;           % analysis frame duration (ms)
 Ts = 10;           % analysis frame shift (ms)
-alpha = 0.97;      % preemphasis coefficient
-R = [ 20 15000 ];  % frequency range to consider
+alpha = 0;      % preemphasis coefficient
+R = [ 20 12000 ];  % frequency range to consider
 M = 20;            % number of filterbank channels
 C = 13;            % number of cepstral coefficients
 L = 22;            % cepstral sine lifter parameter
