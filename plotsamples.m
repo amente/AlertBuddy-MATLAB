@@ -1,8 +1,15 @@
+clc
+clear
+
+
 data = dir(fullfile('training_sample','*.wav'));
 
 playsound = @(source,cbdata) (sound(source.UserData.data, source.UserData.fs));
 
+fprintf('%d\n', numel(data))
+
 for i=1:numel(data)
+% for i=1:1
     [audioData, fs] = loadsample(strcat('training_sample/',data(i).name));
      
     fig = figure(i);
@@ -18,7 +25,11 @@ for i=1:numel(data)
     title(data(i).name);
     xlabel('frequency');
     ylabel('mag spectrum');
-     
+    
+    [~, filename, etx] = fileparts(data(i).name);
+    filename = strcat('plots/', filename);
+%     print(fig, filename, '-dpng') % full size
+    saveas(fig, filename, 'bmp') % size as shown by plot
     
     pbData = struct;
     pbData.data = audioData;
@@ -26,6 +37,8 @@ for i=1:numel(data)
     
     play_btn = uicontrol('Style', 'pushbutton', 'String', 'Play',...
         'Position', [20 20 50 20],...
-        'Callback', playsound, 'UserData',pbData);      
+        'Callback', playsound, 'UserData',pbData);
+    
+    close(fig) % close current plot so computer is not bombarded with them
 end
 
