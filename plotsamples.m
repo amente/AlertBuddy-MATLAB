@@ -20,11 +20,19 @@ for i=1:numel(data)
     xlabel('sample_index');
     ylabel('mag signal');
     
+    
     subplot(2,1,2)
-    plot(abs(fft(audioData)))
+    N = 1024;
+    x = fftshift(fft(audioData,1024));
+    df = fs/N;
+    f = -fs/2:df:fs/2-df;
+    plot(f,abs(x)/N);
+    grid on
+    grid minor
     title(data(i).name);
-    xlabel('frequency');
-    ylabel('mag spectrum');
+    xlabel('Frequency (in Hz)');
+    xlim([0,20000]);
+    ylabel('Magnitude Response');
     
     [~, filename, etx] = fileparts(data(i).name);
     filename = strcat('plots/', filename);
@@ -39,6 +47,6 @@ for i=1:numel(data)
         'Position', [20 20 50 20],...
         'Callback', playsound, 'UserData',pbData);
     
-    close(fig) % close current plot so computer is not bombarded with them
+    %close(fig) % close current plot so computer is not bombarded with them
 end
 
