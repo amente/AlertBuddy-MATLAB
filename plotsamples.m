@@ -1,16 +1,15 @@
 clc
 clear
 
+SAMPLES_FOLDER = 'tmp';
 
-data = dir(fullfile('training_sample','*.wav'));
-
+data = dir(fullfile(SAMPLES_FOLDER,'*.wav'));
 playsound = @(source,cbdata) (sound(source.UserData.data, source.UserData.fs));
-
 fprintf('%d\n', numel(data))
 
 for i=1:numel(data)
 % for i=1:1
-    [audioData, fs] = loadsample(strcat('training_sample/',data(i).name));
+    [audioData, fs] = loadsample(strcat(SAMPLES_FOLDER,'/',data(i).name));
      
     fig = figure(i);
     set(fig, 'Position', [300*mod(i,6) 400*ceil(i/6)-350 300 350]);

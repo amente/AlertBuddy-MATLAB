@@ -9,7 +9,7 @@
 
 clc
 clear
-plotData = false;
+plotData = true;
 
 SAMPLES_FOLDER = 'training';
 N = 1024; %Number of FFT points
