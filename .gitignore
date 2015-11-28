@@ -21,5 +21,6 @@ cepstrum_plots/
 plots/
 training_data/
 test_data/
+neural_net_features/
 
 
