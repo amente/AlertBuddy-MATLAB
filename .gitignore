@@ -14,3 +14,12 @@
 
 # Simulink Code Generation
 slprj/
+
+# Custom ignores
+codegen/
+cepstrum_plots/
+plots/
+training_data/
+test_data/
+
+

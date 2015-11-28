@@ -1,40 +1,33 @@
-Tw = 11.6;           % analysis frame duration (ms)
-Ts = 5.8;           % analysis frame shift (ms)
-alpha = 2;      % preemphasis coefficient
-R = [ 20 12000 ];  % frequency range to consider
-M = 20;            % number of filterbank channels
-C = 13;            % number of cepstral coefficients
-L = 22;            % cepstral sine lifter parameter
+% This script uses the samples in the test_data folder to measure the
+% accuracy of the classifier
 
-% hamming window
-hamming = @(N)(0.54-0.46*cos(2*pi*[0:N-1].'/(N-1)));
+num_siren = 0;
+num_no_siren = 0;
+num_correct_siren = 0;
+num_correct_no_siren = 0;
 
-data = dir(fullfile('tmp','*.wav'));
-
-for i=1:numel(data)
-    [audioData, fs] = loadsample(strcat('tmp/',data(i).name));
-    % Feature extraction (feature vectors as columns)
-    [ MFCCs, FBEs, frames ] =  mfcc( audioData, fs, Tw, Ts, alpha, hamming, R, M, C, L );
-     
-    % Plot cepstrum over time
-    fig = figure(i);
-    set(fig,'PaperPositionMode', 'auto', ...
-        'color', 'w', 'PaperOrientation', 'landscape', 'Visible', 'on' );
-    set(fig, 'Position', [400*mod(i,4) 250*ceil(i/4)-150 400 250]);
-    
-    surf(30 + MFCCs);
-    xlim([0 C-1]);
-    hold on
-    imagesc( [1:size(MFCCs,2)], [0:C-1], MFCCs );
-    colorbar
-    axis( 'xy' );
-    xlabel( 'Frame index' );
-    ylabel( 'Cepstrum index' );
-    title( strcat('Mel frequency cepstrum: ', data(i).name));
-    
-     [~, filename, etx] = fileparts(data(i).name);
-    filename = strcat('cepstrum_plots/', filename);
-%     print(fig, filename, '-dpng') % full size
-    saveas(fig, filename, 'bmp') % size as shown by plot
-    %close(fig);
+traning_data_siren = dir(fullfile('test_data/siren','*.wav'));
+for i=1:numel(traning_data_siren)
+   [audioData, fs] = loadsample(strcat('test_data/siren/',traning_data_siren(i).name));
+   num_siren = num_siren + 1;
+   if(neural_net_classify_mex(audioData,fs) == 1)
+       num_correct_siren = num_correct_siren + 1;
+   end
 end
+
+%Extract features from the non_siren data
+traning_data_no_siren = dir(fullfile('test_data/no_siren','*.wav'));
+for i=1:numel(traning_data_no_siren)
+   [audioData, fs] = loadsample(strcat('test_data/no_siren/',traning_data_no_siren(i).name));
+   num_no_siren = num_no_siren + 1;
+   if(neural_net_classify_mex(audioData,fs) == 2)
+       num_correct_no_siren = num_correct_no_siren + 1;
+   end
+end
+
+fprintf('Total number of samples: %.2f  \n', num_siren + num_no_siren);
+fprintf('Classification Accuracy: %.2f%%  \n', (num_correct_siren/num_siren)*100);
+fprintf('False Positives: %.2f%%  \n', (1 - (num_correct_no_siren/num_no_siren))*100);
+
+
+

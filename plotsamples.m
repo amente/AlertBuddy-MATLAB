@@ -1,7 +1,7 @@
 clc
 clear
 
-SAMPLES_FOLDER = 'tmp';
+SAMPLES_FOLDER = 'data/tornado_siren';
 
 data = dir(fullfile(SAMPLES_FOLDER,'*.wav'));
 playsound = @(source,cbdata) (sound(source.UserData.data, source.UserData.fs));
