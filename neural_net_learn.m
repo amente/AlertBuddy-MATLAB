@@ -10,18 +10,6 @@ function [] = neural_net_learn()
 clc
 clear
 
-% Feature extraction parameters
-Tw = 11.6;           % analysis frame duration (ms)
-Ts = 5.8;           % analysis frame shift (ms)
-alpha = 0.97;      % preemphasis coefficient
-R = [20 12000 ];  % frequency range to consider
-M = 20;            % number of filterbank channels
-C = 13;            % number of cepstral coefficients
-L = 22;            % cepstral sine lifter parameter
-
-% hamming window
-hamming = @(N)(0.54-0.46*cos(2*pi*[0:N-1].'/(N-1)));
-
 dataset = [];
 
 %% FEATURE EXTRACTION
@@ -30,7 +18,7 @@ traning_data_siren = dir(fullfile('training_data/siren','*.wav'));
 for i=1:numel(traning_data_siren)
    [audioData, fs] = loadsample(strcat('training_data/siren/',traning_data_siren(i).name));
     % Feature extraction (feature vectors as columns)
-   [ MFCCs, FBEs, frames ] =  mfcc( audioData, fs, Tw, Ts, alpha, hamming, R, M, C, L );
+   MFCCs =  extract_mfcc( audioData, fs);
    
   %Ignore the first MFCC value
   MFCCs(1,:)=[];
@@ -45,8 +33,9 @@ end
 traning_data_no_siren = dir(fullfile('training_data/no_siren','*.wav'));
 for i=1:numel(traning_data_no_siren)
    [audioData, fs] = loadsample(strcat('training_data/no_siren/',traning_data_no_siren(i).name));
+   
     % Feature extraction (feature vectors as columns)
-   [ MFCCs, FBEs, frames ] =  mfcc( audioData, fs, Tw, Ts, alpha, hamming, R, M, C, L );
+   MFCCs =  extract_mfcc( audioData, fs);
    MFCCs(1,:)=[];
    
    inputMatrix = MFCCs';
@@ -56,6 +45,7 @@ for i=1:numel(traning_data_no_siren)
   dataset = [dataset; [inputMatrix,targetMatrix]];
 end
 
+C = size(inputMatrix,2)+1;
 x = dataset(:,1:C-1)'; % The input matrix is MFCC's except the first value
 t = dataset(:,C:C+1)'; % The target matrix is two columns: COLUMN_1 = 'siren' , COLUMN_2 = 'no_siren'
 
@@ -64,6 +54,8 @@ save(fullfile(pwd, 'neural_net_features','dataset_input.mat'),'x');
 save(fullfile(pwd, 'neural_net_features','dataset_target.mat'),'t');
 
 %% NEURAL NET TRAINING
+% Set seed to avoid randomness
+ setdemorandstream(391418381);
 % Choose a Training Function
 % For a list of all training functions type: help nntrain
 % 'trainlm' is usually fastest.
