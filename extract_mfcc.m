@@ -4,8 +4,8 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
 %   fs - The sample rate
 
     %% PARAMETERS
-    Tw = 11.6;           % analysis frame duration (ms)
-    Ts = 5.8;           % analysis frame shift (ms)
+    Tw = 16;           % analysis frame duration (ms)
+    Ts = 8;           % analysis frame shift (ms)
     alpha = 0.97;      % preemphasis coefficient
     R = [20 12000 ];  % frequency range to consider
     M = 20;            % number of filterbank channels
@@ -13,9 +13,7 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
     L = 22;            % cepstral sine lifter parameter
 
     %% PRELIMINARIES 
-    % Explode samples to the range of 16 bit shorts
-    if( max(abs(audioData))<=1 ), audioData = audioData * 2^15; end;
-
+      
     Nw = round( 1E-3*Tw*fs );    % frame duration (samples)
     Ns = round( 1E-3*Ts*fs );    % frame shift (samples)
 
@@ -24,7 +22,7 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
      
     %% FEATURE EXTRACTION 
     % Preemphasis filtering (see Eq. (5.1) on p.73 of [1])
-    audioData = filter( [1 -alpha], 1, audioData ); % fvtool( [1 -alpha], 1 );
+    %audioData = filter( [1 -alpha], 1, audioData ); % fvtool( [1 -alpha], 1 );
 
     Len = length( audioData );                  % length of the input vector
     Mat = floor((Len-Nw)/Ns+1);             % number of frames 
@@ -34,8 +32,20 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
     indexes = indf(ones(Nw,1),:) + inds(:,ones(1,Mat));       % combined framing indexes
     
     % divide the input signal into frames using indexing
-    frames = audioData( indexes );
-    frames = diag( (0.54-0.46*cos(2*pi*[0:Nw-1].'/(Nw-1))) ) * frames;
+    frames = single(audioData( indexes ));
+    for i=1:size(frames, 1)
+        custom_filter(-1*alpha, frames(i));
+    end
+    
+    for frame_k = 1 : size(frames,2)
+         for i = 0:Nw-1
+            frames(i+1,frame_k) = (0.54-0.46*cos(2*pi*i)/(Nw-1)) * frames(i+1,frame_k);
+         end
+    end
+   
+    
+    
+    %frames = diag( (0.54-0.46*cos(2*pi*[0:Nw-1].'/(Nw-1))) ) * single(frames);
     
     % Magnitude spectrum computation (as column vectors)
     MAG = abs( fft(frames,nfft,1) ); 
@@ -55,7 +65,7 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
     
     c = 700*exp(c_f/1127)-700;
     cw = 1127*log(1+c/700);
-
+ 
     H = zeros( M, K );                  % zero otherwise
     for m = 1:M      
         k = f>=c(m)&f<=c(m+1); % up-slope
@@ -74,9 +84,17 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
     CC =  DCT * log( FBE );
 
     % Cepstral lifter computation
-    lifter = 1+0.5*L*sin(pi*[0:C-1]/L);
+    %lifter = 1+0.5*L*sin(pi*[0:C-1]/L);
 
+    for cc_k = 1 : size(CC,2)
+         for i = 0:C-1
+            CC(i+1,cc_k) = 1+0.5*L*sin(pi*i/L) * CC(i+1,cc_k);
+         end
+    end
+    
+    MFCCs = CC;
     % Cepstral liftering gives liftered cepstral coefficients
-    MFCCs = diag( lifter ) * CC; % ~ HTK's MFCCs 
+    %MFCCs = diag( lifter ) * CC; % ~ HTK's MFCCs 
+    
 end
 
