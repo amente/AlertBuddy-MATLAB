@@ -7,6 +7,7 @@ last = input(i);
 while(i > 1)
     input(i) = last + k*input(i-1);
     last = input(i-1);
+    i = i - 1;
 end
 
 

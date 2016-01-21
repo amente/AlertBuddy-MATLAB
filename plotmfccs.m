@@ -1,9 +1,12 @@
 % This script outputs 3D plots of MFCC features for audio samples in 'tmp'
 % directory
-data = dir(fullfile('training_data/siren','*.wav'));
+
+SAMPLES_FOLDER = 'test_data/house_fire_alarm';
+
+data = dir(fullfile(SAMPLES_FOLDER,'*.wav'));
 C = 12;
 for i=1:numel(data)
-    [audioData, fs] = loadsample(strcat('training_data/siren/',data(i).name));
+    [audioData, fs] = loadsample(strcat(SAMPLES_FOLDER,'/', data(i).name));
     % Feature extraction (feature vectors as columns)
     MFCCs = extract_mfcc(audioData, fs);
      

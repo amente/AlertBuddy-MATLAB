@@ -18,7 +18,7 @@ traning_data_siren = dir(fullfile('training_data/siren','*.wav'));
 for i=1:numel(traning_data_siren)
    [audioData, fs] = loadsample(strcat('training_data/siren/',traning_data_siren(i).name));
     % Feature extraction (feature vectors as columns)
-   MFCCs =  extract_mfcc( audioData, fs);
+   MFCCs =  extract_mfcc_8000( audioData);
    
   %Ignore the first MFCC value
   MFCCs(1,:)=[];
@@ -35,7 +35,7 @@ for i=1:numel(traning_data_no_siren)
    [audioData, fs] = loadsample(strcat('training_data/no_siren/',traning_data_no_siren(i).name));
    
     % Feature extraction (feature vectors as columns)
-   MFCCs =  extract_mfcc( audioData, fs);
+   MFCCs =  extract_mfcc_8000( audioData);
    MFCCs(1,:)=[];
    
    inputMatrix = MFCCs';
