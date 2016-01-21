@@ -1,7 +1,7 @@
 clc
 clear
 
-SAMPLES_FOLDER = 'data/tornado_siren';
+SAMPLES_FOLDER = 'training_data/no_siren';
 
 data = dir(fullfile(SAMPLES_FOLDER,'*.wav'));
 playsound = @(source,cbdata) (sound(source.UserData.data, source.UserData.fs));
@@ -16,8 +16,8 @@ for i=1:numel(data)
     subplot(2,1,1)
     plot(audioData)
     title(data(i).name);
-    xlabel('sample_index');
-    ylabel('mag signal');
+    xlabel('Sample index');
+    ylabel('Magnitude');
     
     
     subplot(2,1,2)
@@ -31,12 +31,12 @@ for i=1:numel(data)
     title(data(i).name);
     xlabel('Frequency (in Hz)');
     xlim([0,20000]);
-    ylabel('Magnitude Response');
+    ylabel('Magnitude response');
     
     [~, filename, etx] = fileparts(data(i).name);
     filename = strcat('plots/', filename);
 %     print(fig, filename, '-dpng') % full size
-    saveas(fig, filename, 'bmp') % size as shown by plot
+    %saveas(fig, filename, 'bmp') % size as shown by plot
     
     pbData = struct;
     pbData.data = audioData;

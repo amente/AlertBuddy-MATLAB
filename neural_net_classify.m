@@ -1,9 +1,9 @@
-function [ type ] = neural_net_classify( audioData, fs)
+function [ type ] = neural_net_classify( MFCCs)
 %NEURAL_NET_CLASSIFY Classifies an audio data using the neural net
 %       audioData: The audio data  
 %       fs: The sample rate
    
-    MFCCs = extract_mfcc(audioData, fs);
+    %MFCCs = extract_mfcc(int16(audioData), fs);
     %Ignore the first MFCC value
     inputMatrix = MFCCs(2:end,:);
     result = neural_net(inputMatrix);

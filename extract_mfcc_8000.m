@@ -1,8 +1,11 @@
-function [ MFCCs ] = extract_mfcc( audioData, fs )
-%EXTRACT_MFCC Extract MFCC features
+function [ MFCCs ] = extract_mfcc_8000( audioData)
+%UNTITLED12 Summary of this function goes here
+%   Detailed explanation goes here
+    %EXTRACT_MFCC Extract MFCC features
 %   audioData - The sample audio data
 %   fs - The sample rate
 
+    fs = single(8000);
     %% PARAMETERS
     Tw = 16;           % analysis frame duration (ms)
     Ts = 8;           % analysis frame shift (ms)
@@ -27,12 +30,14 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
     Len = length( audioData );                  % length of the input vector
     Mat = floor((Len-Nw)/Ns+1);             % number of frames 
     
-    indf = Ns*[ 0:(Mat-1) ];                                  % indexes for frames      
-    inds = [ 1:Nw ].';                                      % indexes for samples
-    indexes = indf(ones(Nw,1),:) + inds(:,ones(1,Mat));       % combined framing indexes
+    
+    frames = single(zeros(Nw, Mat));
+    size(frames(:,1))
+    for i=0:Mat-1
+       frames(:,(i+1)) = audioData((i*64)+1 : (i*64+Nw)); 
+    end
     
     % divide the input signal into frames using indexing
-    frames = single(audioData( indexes ));
     for i=1:size(frames, 1)
         custom_filter(-1*alpha, frames(i));
     end
@@ -80,6 +85,17 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
     % DCT matrix computation
     DCT =  sqrt(2.0/M) * cos( repmat([0:C-1].',1,M).* repmat(pi*([1:M]-0.5)/M,C,1) ); 
     
+    
+    table = zeros(C,M,Nw);
+    for i=1:C
+       for l=1: M
+           for k=1: Nw
+               table(i,l,k) = DCT(i,l)* H(l,k);
+           end
+       end
+    end
+    
+    
     % Conversion of logFBEs to cepstral coefficients through DCT
     CC =  DCT * log( FBE );
 
@@ -95,6 +111,7 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
     MFCCs = CC;
     % Cepstral liftering gives liftered cepstral coefficients
     %MFCCs = diag( lifter ) * CC; % ~ HTK's MFCCs 
-    
+
+
 end
 

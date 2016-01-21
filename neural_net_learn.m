@@ -109,7 +109,7 @@ valPerformance = perform(net,valTargets,y);
 testPerformance = perform(net,testTargets,y);
 
 % View the Network
-%view(net);
+view(net);
 
 % Plots
 % Uncomment these lines to enable various plots.
@@ -124,5 +124,5 @@ fprintf('Deploying code ....\n');
 % Generate MATLAB Code for NeuralNet
 genFunction(net,'neural_net','MatrixOnly','yes');
 % Generate C\C++ Code and MEX Code
-code_generator(size(audioData));
+%code_generator(size(audioData));
 end
