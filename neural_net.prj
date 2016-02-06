@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2015a">
-  <configuration file="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab\neural_net.prj" location="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab" name="neural_net" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="2521369540" file="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab\neural_net.prj" location="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab" name="neural_net" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex />
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -12,7 +12,7 @@
       <param.ExtrinsicCalls />
       <param.IntegrityChecks />
       <param.SaturateOnIntegerOverflow>true</param.SaturateOnIntegerOverflow>
-      <param.GlobalDataSyncMethod />
+      <param.GlobalDataSyncMethod>option.GlobalDataSyncMethod.SyncAlways</param.GlobalDataSyncMethod>
       <param.EnableVariableSizing>true</param.EnableVariableSizing>
       <param.DynamicMemoryAllocation>option.DynamicMemoryAllocation.Threshold</param.DynamicMemoryAllocation>
       <param.DynamicMemoryAllocationThreshold>65536</param.DynamicMemoryAllocationThreshold>
@@ -27,8 +27,8 @@
       <param.LaunchReport>false</param.LaunchReport>
       <param.DefaultTestFile />
       <param.MergeInstrumentationResults>false</param.MergeInstrumentationResults>
-      <param.VerificationMode />
-      <param.VerificationStatus>option.VerificationStatus.Inactive</param.VerificationStatus>
+      <param.VerificationMode>option.VerificationMode.None</param.VerificationMode>
+      <param.VerificationStatus />
       <param.CustomSourceCode />
       <param.CustomHeaderCode />
       <param.CustomInitializer />
@@ -37,7 +37,7 @@
       <param.CustomSource />
       <param.CustomLibrary />
       <param.PostCodeGenCommand />
-      <param.mex.GenCodeOnly />
+      <param.mex.GenCodeOnly>false</param.mex.GenCodeOnly>
       <param.ConstantFoldingTimeout>40000</param.ConstantFoldingTimeout>
       <param.RecursionLimit>100</param.RecursionLimit>
       <param.PreserveVariableNames>option.PreserveVariableNames.UserNames</param.PreserveVariableNames>
@@ -63,7 +63,6 @@
         <param.ExtrinsicCalls />
         <param.IntegrityChecks />
         <param.SaturateOnIntegerOverflow />
-        <param.GlobalDataSyncMethod />
         <param.EnableVariableSizing />
         <param.DynamicMemoryAllocation />
         <param.DynamicMemoryAllocationThreshold />
@@ -78,7 +77,6 @@
         <param.LaunchReport />
         <param.DefaultTestFile />
         <param.MergeInstrumentationResults />
-        <param.VerificationMode />
         <param.VerificationStatus />
         <param.CustomSourceCode />
         <param.CustomHeaderCode />
@@ -88,7 +86,6 @@
         <param.CustomSource />
         <param.CustomLibrary />
         <param.PostCodeGenCommand />
-        <param.mex.GenCodeOnly />
         <param.ConstantFoldingTimeout />
         <param.RecursionLimit />
         <param.PreserveVariableNames />
@@ -151,8 +148,8 @@
       <param.DefaultTestFile />
       <param.MergeInstrumentationResults>false</param.MergeInstrumentationResults>
       <param.RanPilSilVerification>false</param.RanPilSilVerification>
-      <param.VerificationMode />
-      <param.VerificationStatus>option.VerificationStatus.Inactive</param.VerificationStatus>
+      <param.VerificationMode>option.VerificationMode.None</param.VerificationMode>
+      <param.VerificationStatus>option.VerificationStatus.Passed</param.VerificationStatus>
       <param.CustomSourceCode />
       <param.CustomHeaderCode />
       <param.CustomInitializer />
@@ -163,10 +160,10 @@
       <param.PostCodeGenCommand />
       <param.TargetLangStandard>C89/C90 (ANSI)</param.TargetLangStandard>
       <param.CodeReplacementLibrary>None</param.CodeReplacementLibrary>
-      <param.DeprecatedCRLFlag />
+      <param.DeprecatedCRLFlag>false</param.DeprecatedCRLFlag>
       <param.SameHardware>true</param.SameHardware>
       <param.HardwareVendor.Production>Generic</param.HardwareVendor.Production>
-      <param.HardwareType.Production>MATLAB Host Computer</param.HardwareType.Production>
+      <param.HardwareType.Production>Unspecified (assume 32-bit Generic)</param.HardwareType.Production>
       <param.HWDeviceType.Production />
       <var.instance.enabled.Production>true</var.instance.enabled.Production>
       <param.HardwareSizeChar.Production>8</param.HardwareSizeChar.Production>
@@ -187,7 +184,7 @@
       <param.HardwareVendor.Target>Generic</param.HardwareVendor.Target>
       <param.HardwareType.Target>MATLAB Host Computer</param.HardwareType.Target>
       <param.HWDeviceType.Target />
-      <var.instance.enabled.Target />
+      <var.instance.enabled.Target>false</var.instance.enabled.Target>
       <param.HardwareSizeChar.Target>8</param.HardwareSizeChar.Target>
       <param.HardwareSizeShort.Target>16</param.HardwareSizeShort.Target>
       <param.HardwareSizeInt.Target>32</param.HardwareSizeInt.Target>
@@ -277,8 +274,6 @@
         <param.DefaultTestFile />
         <param.MergeInstrumentationResults />
         <param.RanPilSilVerification />
-        <param.VerificationMode />
-        <param.VerificationStatus />
         <param.CustomSourceCode />
         <param.CustomHeaderCode />
         <param.CustomInitializer />
@@ -291,7 +286,6 @@
         <param.CodeReplacementLibrary />
         <param.DeprecatedCRLFlag />
         <param.SameHardware />
-        <param.HardwareType.Production />
         <param.HWDeviceType.Production />
         <var.instance.enabled.Production />
         <param.HardwareSizeChar.Production />
@@ -699,25 +693,25 @@
       </unset>
     </profile>
     <param.objective>option.objective.c</param.objective>
-    <param.WorkflowStep>entryPoints</param.WorkflowStep>
+    <param.WorkflowStep>generateCode</param.WorkflowStep>
     <param.TestSnippets>
       <item>main</item>
     </param.TestSnippets>
-    <param.DefaultImportExportVariable />
+    <param.DefaultImportExportVariable>config</param.DefaultImportExportVariable>
     <param.UseGlobals>option.UseGlobals.No</param.UseGlobals>
     <param.outputfile>${PROJECT_ROOT}\codegen\lib\neural_net_classify\neural_net_classify.lib</param.outputfile>
-    <param.version />
-    <param.HasECoderFeatures />
+    <param.version>R2012a</param.version>
+    <param.HasECoderFeatures>true</param.HasECoderFeatures>
     <param.mex.mainhtml />
     <param.grt.mainhtml />
     <param.CallGeneratedCodeFromTest>true</param.CallGeneratedCodeFromTest>
     <param.AutoInferDefaultFile />
-    <param.AutoInferUseVariableSize />
-    <param.AutoInferUseUnboundedSize />
-    <param.AutoInferVariableSizeThreshold />
-    <param.AutoInferUnboundedSizeThreshold />
-    <param.EnableFixedPointStep />
-    <param.AnnotationChecksum />
+    <param.AutoInferUseVariableSize>false</param.AutoInferUseVariableSize>
+    <param.AutoInferUseUnboundedSize>false</param.AutoInferUseUnboundedSize>
+    <param.AutoInferVariableSizeThreshold>1024</param.AutoInferVariableSizeThreshold>
+    <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
+    <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
+    <param.AnnotationChecksum>2413278979</param.AnnotationChecksum>
     <var.LegacyTarget />
     <var.MirrorOnOpen>false</var.MirrorOnOpen>
     <param.FixedPointEnabled>false</param.FixedPointEnabled>
@@ -732,7 +726,7 @@
     <param.UsePreconditions>false</param.UsePreconditions>
     <param.FeatureFlags />
     <param.FixedPointMode>option.FixedPointMode.None</param.FixedPointMode>
-    <param.AutoScaleLoopIndexVariables />
+    <param.AutoScaleLoopIndexVariables>false</param.AutoScaleLoopIndexVariables>
     <param.ComputedFixedPointData />
     <param.UserFixedPointData />
     <param.DefaultWordLength>16</param.DefaultWordLength>
@@ -762,7 +756,7 @@
     <param.EnableCodeEfficiencyChecks>false</param.EnableCodeEfficiencyChecks>
     <param.DefaultFixedPointSignedness>option.DefaultFixedPointSignedness.Automatic</param.DefaultFixedPointSignedness>
     <param.FixedPointTypeProposalMode>option.FixedPointTypeProposalMode.ProposeFractionLengths</param.FixedPointTypeProposalMode>
-    <param.EnableFixedPointStep />
+    <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
     <unset>
       <param.DefaultImportExportVariable />
       <param.UseGlobals />
@@ -778,7 +772,6 @@
       <param.AutoInferVariableSizeThreshold />
       <param.AutoInferUnboundedSizeThreshold />
       <param.EnableFixedPointStep />
-      <param.AnnotationChecksum />
       <var.LegacyTarget />
       <var.MirrorOnOpen />
       <var.redirectedInputTypeData />
