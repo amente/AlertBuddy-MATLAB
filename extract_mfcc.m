@@ -88,7 +88,7 @@ function [ MFCCs ] = extract_mfcc( audioData, fs )
 
     for cc_k = 1 : size(CC,2)
          for i = 0:C-1
-            CC(i+1,cc_k) = 1+0.5*L*sin(pi*i/L) * CC(i+1,cc_k);
+            CC(i+1,cc_k) = (1+0.5*L*sin(pi*i/L)) * CC(i+1,cc_k);
          end
     end
     

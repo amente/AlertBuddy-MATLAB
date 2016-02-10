@@ -13,7 +13,7 @@ for i=1:numel(traning_data_siren)
    num_siren = num_siren + 1;
    if(neural_net_classify(MFCCs) == 1)
        num_correct_siren = num_correct_siren + 1;
-       traning_data_siren(i).name
+       %traning_data_siren(i).name
    end
 end
 
@@ -25,7 +25,7 @@ for i=1:numel(traning_data_no_siren)
    num_no_siren = num_no_siren + 1;
    if(neural_net_classify(MFCCs) == 2)
        num_correct_no_siren = num_correct_no_siren + 1;
-       traning_data_no_siren(i).name
+       %traning_data_no_siren(i).name
    end
 end
 

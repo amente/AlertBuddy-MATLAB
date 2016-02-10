@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2015a">
-  <configuration build-checksum="2521369540" file="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab\neural_net.prj" location="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab" name="neural_net" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="168979961" file="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab\neural_net.prj" location="C:\Users\amentebullo\Desktop\Git\Git\project\ihear-matlab" name="neural_net" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex />
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -163,7 +163,7 @@
       <param.DeprecatedCRLFlag>false</param.DeprecatedCRLFlag>
       <param.SameHardware>true</param.SameHardware>
       <param.HardwareVendor.Production>Generic</param.HardwareVendor.Production>
-      <param.HardwareType.Production>Unspecified (assume 32-bit Generic)</param.HardwareType.Production>
+      <param.HardwareType.Production>ARM 10</param.HardwareType.Production>
       <param.HWDeviceType.Production />
       <var.instance.enabled.Production>true</var.instance.enabled.Production>
       <param.HardwareSizeChar.Production>8</param.HardwareSizeChar.Production>
@@ -237,8 +237,6 @@
         <param.SaturateOnIntegerOverflow />
         <param.PurelyIntegerCode />
         <param.SupportNonFinite />
-        <param.EnableVariableSizing />
-        <param.DynamicMemoryAllocation />
         <param.DynamicMemoryAllocationThreshold />
         <param.StackUsageMax />
         <param.MultiInstanceCode />
