@@ -1,7 +1,7 @@
 % This script outputs 3D plots of MFCC features for audio samples in 'tmp'
 % directory
 
-SAMPLES_FOLDER = 'test_data/house_fire_alarm';
+SAMPLES_FOLDER = 'test_data/siren';
 
 data = dir(fullfile(SAMPLES_FOLDER,'*.wav'));
 C = 12;

@@ -8,7 +8,7 @@ function [ type ] = neural_net_classify( MFCCs)
     inputMatrix = MFCCs(2:end,:);
     result = neural_net(inputMatrix);
     
-    k = sum(result');
+    k = sum(result')
     if(max(k) == k(1))
         type = 1;
     else
